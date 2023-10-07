@@ -52,6 +52,19 @@
             width: 70%;
             margin: 0px auto 20px auto;
         }
+
+        .cheer {
+            position: relative;
+            padding-right: 50px;
+            /* 삭제 버튼의 공간 확보 */
+        }
+
+        .deletebtn {
+            position: absolute;
+            bottom: 15px;
+            right: 10px;
+        }
+
     </style>
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
@@ -139,11 +152,16 @@
             let comment = row['comment'];
 
             let commentInput = `
-            <p class="cheer pb-3 mb-0 small lh-sm border-bottom">
+            <p class="cheer pb-3 mb-3 small lh-sm border-bottom">
                         <strong class="comment d-block text-gray-dark">@${user}에게</strong>
-                        ${comment}`;
+                        ${comment}
+                        <span><button type="button" class="deletebtn btn btn-warning">삭제</button>
+                            </span></p>`;
             $('#commentList').append(commentInput);
         });
+        //삭제
+
+
     </script>
 </head>
 
