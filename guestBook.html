@@ -64,7 +64,6 @@
             bottom: 15px;
             right: 10px;
         }
-
     </style>
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
@@ -73,6 +72,7 @@
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { orderBy, query } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"; // 댓글 시간 순 정렬 위해 import함
+        import { doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"; // 삭제
 
         // 사용할 DB로 주소 바꾸기!
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -150,16 +150,23 @@
 
             let user = row['user'];
             let comment = row['comment'];
+            let comment_id = row['comment_id']
 
             let commentInput = `
-            <p class="cheer pb-3 mb-3 small lh-sm border-bottom">
+            <p id="${comment_id}" class="cheer pb-3 mb-3 small lh-sm border-bottom">
                         <strong class="comment d-block text-gray-dark">@${user}에게</strong>
                         ${comment}
                         <span><button type="button" class="deletebtn btn btn-warning">삭제</button>
                             </span></p>`;
             $('#commentList').append(commentInput);
         });
-        //삭제
+
+        // 삭제 버튼 클릭 이벤트 리스너 추가
+        document.addEventListener("click", async (event) => {
+            if (event.target.classList.contains("deletebtn")) {
+                console.log("연결 테스트");
+            }
+        });
 
 
     </script>
